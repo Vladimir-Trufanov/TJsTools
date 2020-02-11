@@ -2,12 +2,12 @@
 // PHP7/HTML5, EDGE/CHROME                                     *** Main.php ***
 
 // ****************************************************************************
-// * TPhpPrown-test                   Кто прожил жизнь, тот больше не спешит! *
+// * TJsTools-test     Библиотека JavaScript - прикладных прототипов объектов *
 // ****************************************************************************
 
 //                                                   Автор:       Труфанов В.Е.
-//                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 31.01.2020
+//                                                   Дата создания:  13.01.2020
+// Copyright © 2020 tve                              Посл.изменение: 11.02.2020
 
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 
@@ -23,9 +23,10 @@ require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
 <!DOCTYPE html>
 <html>
 <head>
-<title>Кто прожил жизнь, тот больше не спешит!</title>
+<title>TJsTools: Библиотека JavaScript - прикладных прототипов объектов</title>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet">
+
 <link rel="stylesheet" type="text/css" href="Styles/Styles.css">
 
 <link rel="stylesheet" type="text/css" 
@@ -37,17 +38,28 @@ require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
    src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js">
 </script>
 
+<link rel="stylesheet" href="qunit-2.9.2.css">
+<script src="qunit-2.9.2.js" ></script> 
+
+<script>
+   function trima(text) 
+   {
+      return (text || "").replace(/^\s+|\s+$/g, "");
+   }
+</script>
+
+
+
 </head>
 <body>
 
 <?php
 // Определяем сайтовые константы
-define ("ChooseAll",  "Выбрать все функции"); // Первая кнопка Submit  
+define ("ChooseAll",  "Выбрать все классы"); // Первая кнопка Submit  
 define ("ToTest",     "Протестировать");      // Вторая кнопка Submit 
 
-// Инициализируем список прикладных функций библиотеки TPhpPrown 
-// и рабочего пространства сайта
-$aPhpPrown=array
+// Инициализируем список прикладных классов библиотеки TJsTools 
+$aTJsTools=array
 (            
    'iniWorkSpace'   =>'cформировать массив параметров рабочего пространства сайта',   
    'Findes'         =>'выбрать из строки подстроку, соответствующую регулярному выражению',   
@@ -56,7 +68,7 @@ $aPhpPrown=array
    'MakeUserError'  =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
 );
 // ****************************************************************************
-// *            Вывести список прикладных функций библиотеки TPhpPrown        *
+// *            Вывести список прикладных классов библиотеки TJsTools         *
 // ****************************************************************************
 
 // Выводим форму для следующего тестирования, которая предоставляет пользователю
@@ -74,13 +86,13 @@ $aPhpPrown=array
 //    &
 //    formDoor%5B%5D=Findes можно выбрать все флажки
 
-function FunctionsCheckbox($aPhpPrown,$isCheck=ToTest)
+function FunctionsCheckbox($aTJsTools,$isCheck=ToTest)
 {
    $Result = true;
    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">';
-   echo '<p>Укажите функции TPhpPrown, которые следует протестировать?<br><br>';
+   echo '<p>Укажите прототифункции TPhpPrown, которые следует протестировать?<br><br>';
    echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
-   foreach($aPhpPrown as $k=>$v)
+   foreach($aTJsTools as $k=>$v)
    {
       if ($isCheck==ChooseAll)
       {
@@ -108,37 +120,70 @@ function FunctionsCheckbox($aPhpPrown,$isCheck=ToTest)
 
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
-   FunctionsCheckbox($aPhpPrown,ChooseAll);
+   FunctionsCheckbox($aTJsTools,ChooseAll);
 }
 else if (prown\isComRequest(ToTest,'formSubmit'))
 {
    // Вырисовываем чекбоксы для тестирования
-   FunctionsCheckbox($aPhpPrown,ToTest);
+   FunctionsCheckbox($aTJsTools,ToTest);
    // Запускаем тестирование
-   MakeTest($SiteRoot,$aPhpPrown);
+   MakeTest($SiteRoot,$aTJsTools);
 }
 else
 {
    // Вырисовываем чекбоксы 
-   FunctionsCheckbox($aPhpPrown,ToTest);
+   FunctionsCheckbox($aTJsTools,ToTest);
 }
 
-
-
-//require("user_agent_parse.php");
-
-
 ?>
+<script>
+   QUnit.test('Первая функция trima()', function (assert) 
+   {
+      assert.equal(trima(' x'), 'x', 'Начальные пробелы');
+   });
+   
+   // Let's test this function
+   function isEven(val) 
+   {
+      return val % 2 === 0;
+   }
+
+   QUnit.test('isEven()', function(assert) 
+   {
+      assert.ok(isEven(0), 'Zero is an even number');
+      assert.ok(isEven(2), 'So is two');
+      assert.ok(isEven(-4), 'So is negative four');
+      assert.ok(!isEven(1), 'One is not an even number');
+      assert.ok(!isEven(-7), 'Neither does negative seven');
+      // Fails
+      //assert.ok(isEven(3), 'Three is an even number');
+   })
+</script>
+
 <!-- 
-<a target="_blank" href="#"><img src="89.gif" ></a>
--->
-Привет!
+<h1 id="qunit-header">Заголовок страницы</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar">Панель инструментов</div>
+<h2 id="qunit-userAgent">UserAgent</h2>
+<div id="qunit"></div>
+<ol id="qunit-tests"></ol>
+-->  
 <!-- 
-<a target="_blank" href="#">
-<img src="http://s14.rimg.info/89ec86760c43451421aef6bd4dbd2c65.gif" ></a>
-<a target="_blank" href="http://smayliki.ru/smilie-873369351.html">
-<img src="http://s14.rimg.info/89ec86760c43451421aef6bd4dbd2c65.gif" ></a>
+Делаем общий вывод прохождения тестов
+в следующей последовательности: 
+   а) заголовок страницы;
+   б) разделитель (если он не был вызван ранее, в остальных случаях 
+      без <div id="qunit"></div> тоже выводится один раз);    
+   в) панель инструментов (если она не была вызвана отдельно);    
+   г) UserAgent (если он не был вызван отдельно); 
+   д) По клику на числе проверок в тесте, разворачивается список проверок   
+<div id="qunit"></div>
 -->
+<h2 id="qunit-userAgent"></h2>
+<h2 id="qunit-banner"></h2>
+<ol id="qunit-tests"></ol>
+<h2 id="qunit-userAgent"></h2>
+
 </body> 
 </html>
 <?php
