@@ -40,10 +40,10 @@ TJsTools
 2=www\Main.php
 [Selected Project Files]
 Main=
-Selected=www\Main.php
+Selected=README.md
 [README.md]
-TopLine=9
-Caret=12,24
+TopLine=1
+Caret=7,5
 [www\index.php]
 TopLine=1
 Caret=1,1
