@@ -1,0 +1,52 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.CompileOnBackground=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+DefaultDir=C:\TJsTools
+DefaultCP=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+HTServer=localhost
+Extensions=*.*
+[Project tree]
+TJsTools
+	+TJsTools
+		-TJsTools
+		-TJsToolsTests
+		+www
+			www\favicon.ico
+			www\index.php
+			www\iniWorkSpace.php
+			www\Main.php
+		-Материалы
+			-Favicon
+				Материалы\Favicon\iconfinder_Artboard_14_5740105.png
+				Материалы\Favicon\TJsTools.ico
+				Материалы\Favicon\Откуда иконка TJsTools.doc
+			Материалы\QUnit - тестирование javascript кода.doc
+			Материалы\Как проверить свой код JavaScript с помощью QUnit.doc
+		LICENSE
+		README.md
+		TJsTools.ppr
+[Open project files]
+0=README.md
+1=www\index.php
+2=www\Main.php
+[Selected Project Files]
+Main=
+Selected=www\Main.php
+[README.md]
+TopLine=9
+Caret=12,24
+[www\index.php]
+TopLine=1
+Caret=1,1
+[www\Main.php]
+TopLine=119
+Caret=8,135
