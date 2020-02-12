@@ -1,4 +1,4 @@
-// JavaScript/PHP7/HTML5, EDGE/CHROME                    *** TisEvenTest.js ***
+// JavaScript/PHP7/HTML5, EDGE/CHROME                     *** isEvenTest.js ***
 
 // ****************************************************************************
 // * TJsPrown:                   Test "Проверить, четно ли числовое значение" *
@@ -18,4 +18,4 @@ QUnit.test('isEven()', function(assert)
    // Fails
    //assert.ok(isEven(3), 'Three is an even number');
 })
-// ********************************************************* TisEvenTest.js ***
+// ********************************************************** isEvenTest.js ***
