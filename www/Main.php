@@ -19,6 +19,7 @@ require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
 require_once $TPhpPrown."/TPhpPrown/isCalcInBrowser.php";
 require_once $TPhpPrown."/TPhpPrown/MakeType.php";
 require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
+require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,8 +27,6 @@ require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
 <title>TJsTools: Библиотека JavaScript - прикладных прототипов объектов</title>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet">
-
-<link rel="stylesheet" type="text/css" href="Styles/Styles.css">
 
 <link rel="stylesheet" type="text/css" 
    href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/ui-lightness/jquery-ui.css">
@@ -38,25 +37,18 @@ require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
    src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js">
 </script>
 
-<link rel="stylesheet" href="qunit-2.9.2.css">
-<script src="qunit-2.9.2.js" ></script> 
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+<script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
 
-<script>
-   function trima(text) 
-   {
-      return (text || "").replace(/^\s+|\s+$/g, "");
-   }
-</script>
-
-
-
+<script src="TJsTools/Trim.js">  </script>
+<script src="TJsTools/isEven.js"></script> 
 </head>
 <body>
 
 <?php
 // Определяем сайтовые константы
-define ("ChooseAll",  "Выбрать все классы"); // Первая кнопка Submit  
-define ("ToTest",     "Протестировать");      // Вторая кнопка Submit 
+define ("ChooseAll",  "Выбрать все прототипы"); // Первая кнопка Submit  
+define ("ToTest",     "Протестировать");        // Вторая кнопка Submit 
 
 // Инициализируем список прикладных классов библиотеки TJsTools 
 $aTJsTools=array
@@ -90,7 +82,7 @@ function FunctionsCheckbox($aTJsTools,$isCheck=ToTest)
 {
    $Result = true;
    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">';
-   echo '<p>Укажите прототифункции TPhpPrown, которые следует протестировать?<br><br>';
+   echo '<p>Укажите прототипы объектов в TJsTools, которые следует протестировать?<br><br>';
    echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
    foreach($aTJsTools as $k=>$v)
    {
@@ -127,7 +119,7 @@ else if (prown\isComRequest(ToTest,'formSubmit'))
    // Вырисовываем чекбоксы для тестирования
    FunctionsCheckbox($aTJsTools,ToTest);
    // Запускаем тестирование
-   MakeTest($SiteRoot,$aTJsTools);
+   MakeTest($SiteRoot,$aTJsTools,'JS');
 }
 else
 {
@@ -136,39 +128,19 @@ else
 }
 
 ?>
-<script>
-   QUnit.test('Первая функция trima()', function (assert) 
-   {
-      assert.equal(trima(' x'), 'x', 'Начальные пробелы');
-   });
-   
-   // Let's test this function
-   function isEven(val) 
-   {
-      return val % 2 === 0;
-   }
 
-   QUnit.test('isEven()', function(assert) 
-   {
-      assert.ok(isEven(0), 'Zero is an even number');
-      assert.ok(isEven(2), 'So is two');
-      assert.ok(isEven(-4), 'So is negative four');
-      assert.ok(!isEven(1), 'One is not an even number');
-      assert.ok(!isEven(-7), 'Neither does negative seven');
-      // Fails
-      //assert.ok(isEven(3), 'Three is an even number');
-   })
-</script>
+<script src="TJsToolsTests/TTrimTest.js"></script> 
+<script src="TJsToolsTests/TisEvenTest.js"></script> 
 
 <!-- 
 <h1 id="qunit-header">Заголовок страницы</h1>
 <h2 id="qunit-banner"></h2>
 <div id="qunit-testrunner-toolbar">Панель инструментов</div>
 <h2 id="qunit-userAgent">UserAgent</h2>
+<div id="qunit-fixture">Привет!</div>
 <div id="qunit"></div>
 <ol id="qunit-tests"></ol>
--->  
-<!-- 
+
 Делаем общий вывод прохождения тестов
 в следующей последовательности: 
    а) заголовок страницы;
@@ -176,13 +148,17 @@ else
       без <div id="qunit"></div> тоже выводится один раз);    
    в) панель инструментов (если она не была вызвана отдельно);    
    г) UserAgent (если он не был вызван отдельно); 
-   д) По клику на числе проверок в тесте, разворачивается список проверок   
+   д) По клику на числе проверок в тесте, разворачивается список проверок 
+   е) <div id="qunit-fixture"></div> - образец кода и разметки до тестов
 <div id="qunit"></div>
 -->
+
 <h2 id="qunit-userAgent"></h2>
 <h2 id="qunit-banner"></h2>
 <ol id="qunit-tests"></ol>
 <h2 id="qunit-userAgent"></h2>
+<div id="qunit-fixture">Привет!</div>
+
 
 </body> 
 </html>

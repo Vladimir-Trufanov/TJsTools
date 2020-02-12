@@ -17,9 +17,14 @@ Extensions=*.*
 [Project tree]
 TJsTools
 	+TJsTools
-		-TJsTools
-		-TJsToolsTests
 		+www
+			+TJsTools
+				www\TJsTools\isEven.js
+				www\TJsTools\Trim.js
+			+TJsToolsTests
+				www\TJsToolsTests\TCookieTest.js
+				www\TJsToolsTests\TisEvenTest.js
+				www\TJsToolsTests\TTrimTest.js
 			www\favicon.ico
 			www\index.php
 			www\iniWorkSpace.php
@@ -38,19 +43,35 @@ TJsTools
 0=README.md
 1=www\index.php
 2=www\Main.php
-3=www\iniWorkSpace.php
+3=www\TJsToolsTests\TTrimTest.js
+4=www\TJsTools\isEven.js
+5=www\TJsTools\Trim.js
+6=www\TJsToolsTests\TCookieTest.js
+7=www\TJsToolsTests\TisEvenTest.js
 [Selected Project Files]
 Main=
 Selected=www\Main.php
 [README.md]
-TopLine=43
+TopLine=19
 Caret=1,19
 [www\index.php]
 TopLine=5
 Caret=1,1
 [www\Main.php]
-TopLine=53
-Caret=32,135
-[www\iniWorkSpace.php]
-TopLine=57
+TopLine=125
+Caret=1,133
+[www\TJsToolsTests\TTrimTest.js]
+TopLine=1
+Caret=1,1
+[www\TJsTools\isEven.js]
+TopLine=1
+Caret=1,1
+[www\TJsTools\Trim.js]
+TopLine=1
+Caret=1,1
+[www\TJsToolsTests\TCookieTest.js]
+TopLine=1
+Caret=1,1
+[www\TJsToolsTests\TisEvenTest.js]
+TopLine=1
 Caret=1,1
